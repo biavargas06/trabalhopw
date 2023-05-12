@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 05-Maio-2023 às 15:58
--- Versão do servidor: 10.4.24-MariaDB
--- versão do PHP: 8.1.6
+-- Tempo de geraÃ§Ã£o: 12-Maio-2023 Ã s 15:28
+-- VersÃ£o do servidor: 10.4.24-MariaDB
+-- versÃ£o do PHP: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,8 +18,21 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Banco de dados: `trabalho`
+-- Banco de dados: `trabalhopw`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `compartilhar_docs`
+--
+
+CREATE TABLE `compartilhar_docs` (
+  `iddocumento` int(11) NOT NULL,
+  `idcompartilhar_docs` int(11) NOT NULL,
+  `permissao` tinyint(4) NOT NULL,
+  `usuarios_idusuario` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -28,11 +41,9 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `documentos` (
-  `id` int(11) NOT NULL,
+  `iddocumento` int(11) NOT NULL,
   `nome` varchar(255) NOT NULL,
-  `caminho` varchar(255) NOT NULL,
-  `usuario_id` int(11) NOT NULL,
-  `permissoes` varchar(255) DEFAULT 'visualizar'
+  `usuarios_idusuario` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -42,54 +53,75 @@ CREATE TABLE `documentos` (
 --
 
 CREATE TABLE `usuarios` (
-  `id` int(11) NOT NULL,
-  `nome` varchar(255) NOT NULL,
+  `idusuario` int(11) NOT NULL,
+  `nome` varchar(255) DEFAULT NULL,
   `email` varchar(255) NOT NULL,
   `senha` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Índices para tabelas despejadas
+-- Ãndices para tabelas despejadas
 --
 
 --
--- Índices para tabela `documentos`
+-- Ãndices para tabela `compartilhar_docs`
+--
+ALTER TABLE `compartilhar_docs`
+  ADD PRIMARY KEY (`idcompartilhar_docs`),
+  ADD KEY `usuarios_idusuario` (`usuarios_idusuario`),
+  ADD KEY `fk_id_documento` (`iddocumento`);
+
+--
+-- Ãndices para tabela `documentos`
 --
 ALTER TABLE `documentos`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `usuario_id` (`usuario_id`);
+  ADD PRIMARY KEY (`iddocumento`),
+  ADD KEY `usuarios_idusuario` (`usuarios_idusuario`);
 
 --
--- Índices para tabela `usuarios`
+-- Ãndices para tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`idusuario`);
 
 --
 -- AUTO_INCREMENT de tabelas despejadas
 --
 
 --
+-- AUTO_INCREMENT de tabela `compartilhar_docs`
+--
+ALTER TABLE `compartilhar_docs`
+  MODIFY `idcompartilhar_docs` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de tabela `documentos`
 --
 ALTER TABLE `documentos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `iddocumento` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idusuario` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- Restrições para despejos de tabelas
+-- RestriÃ§Ãµes para despejos de tabelas
 --
+
+--
+-- Limitadores para a tabela `compartilhar_docs`
+--
+ALTER TABLE `compartilhar_docs`
+  ADD CONSTRAINT `compartilhar_docs_ibfk_1` FOREIGN KEY (`usuarios_idusuario`) REFERENCES `usuarios` (`idusuario`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_id_documento` FOREIGN KEY (`iddocumento`) REFERENCES `documentos` (`iddocumento`);
 
 --
 -- Limitadores para a tabela `documentos`
 --
 ALTER TABLE `documentos`
-  ADD CONSTRAINT `documentos_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `documentos_ibfk_1` FOREIGN KEY (`usuarios_idusuario`) REFERENCES `usuarios` (`idusuario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
