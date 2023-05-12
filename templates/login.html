@@ -1,0 +1,27 @@
+
+{% extends "inc/base.html" %}
+
+{% block titulo %}user{% endblock %}
+
+{% block conteudo %}
+
+{% if erro == 1 %}
+    Usuário e senha inválidos!
+        
+{% endif %}
+<form class="space-y-5" action="login_verifica.php" method="post">
+    <div class="mx-auto max-w-xs" >
+        <input  class="mb-1 block text-sm font-medium text-gray-700" type="text" name="nome" placeholder="usuário">
+    </div>
+    <div>
+        <input  class="mb-1 block text-sm font-medium text-gray-700" type="password" name="password" placeholder="senha">
+    </div>
+    <div>
+        <input type="submit" value="Acessar">
+    </div>
+    <div>
+        <a href="novo_usuario.php ">Não tenho cadastro</a>
+    </div>
+
+</form>
+{% endblock %}

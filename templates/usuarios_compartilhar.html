@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <table border="1px solid black">
+
+<thead >
+    <tr>
+        <th>Usuários</th>
+         <th>Permições</th>
+        <th>Compartilhar</th>
+    </tr>
+</thead>
+
+<tbody>
+    {%for usr in users%}
+    <form action="compartilhar.php?idusuarios={{usr.idusuarios}}&iddocumentos={{iddocumentos.iddocumentos}}" method="post">
+        <tr >
+            <td >{{usr.nome}}</td>
+
+
+            <td>
+                <select name="select" id="">
+                    <option value="1" name="viz">Vizualizar</option>
+                    <option value="2" name="exlcuir">Excluir</option>
+                </select>
+            </td>
+
+            <td><input type="submit" value="Compartilhar"></td>
+        </tr>
+        </form>
+        {%else%}
+            <tr>
+            <td colspan = 2>Nenhum usuário encontrado</td>
+            </tr>
+    {%endfor%}
+</tbody>
+</table>
+
+</body>
+</html>

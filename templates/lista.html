@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table class="rwd-table">
+<h1>Compartilhados com você:</h1>
+
+<thead >
+    <tr>
+        <th>Remetente</th>
+        <th>Arquivo</th>
+        <th>Excluir</th>
+    </tr>
+</thead>
+
+<tbody>
+    {%for usr in usuarios%}
+        <tr >
+            <td >{{usr.usuario_nome}}</td>
+            <td>{{usr.nome}}</td>
+
+            {% if usr.permissao == 2 %}
+            <td><a href="doc_ap.php?iddocumento={{usr.iddocumento}}&idusuario={{usr.usuarios_idusuario}}">Excluir</a></td>
+            {% else %}
+            <td>Sem premissão!</td>
+            {% endif %}
+            
+
+        </tr>
+        {%else%}
+            <tr>
+            <td colspan = 2>Nenhum arquivo compartilhado</td>
+            </tr>
+    {%endfor%}
+</tbody>
+</table>
+<a class="btn btn-2" href="boasvindas.php?idusuario={{idusuario}}">Voltar</a>
+</body>
+</html>

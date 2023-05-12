@@ -1,0 +1,38 @@
+{# templates/usuarios.html #}
+{% extends "inc/base.html" %}
+
+{% block titulo %}Usuários{% endblock %}
+
+{% block conteudo %}
+    <p>Listagem de usuários</p>
+
+        <table class="my-5 w-full border-collapse border border-gray-200 bg-white text-left text-sm text-gray-500">
+
+        <thead class="bg-gray-50">
+            <tr>
+                <th class="px-6 py-4 font-medium text-gray-900">Usuário</th>
+                <th class="px-6 py-4 font-medium text-gray-900" width="20%">Apagar</th>
+            </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-100 border-t border-gray-100">
+        {% for usr in usuarios %}
+        <!-- Linha para repetir -->
+        <tr class="hover:bg-gray-50">
+            <td class="px-6 py-4 font-medium text-gray-900"><a href="/usuario_ver/{{usr.id}}">{{ usr.nome }}</a></td>
+            <td class="px-6 py-4"><a href="/usuario_apagar/{{usr.id}}" class="inline-flex items-center gap-1.5 rounded-lg border border-red-500 bg-red-500 px-5 py-2.5 text-center text-sm font-medium text-white shadow-sm transition-all hover:border-red-700 hover:bg-red-700 focus:ring focus:ring-red-200 disabled:cursor-not-allowed disabled:border-red-300 disabled:bg-red-300"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor" class="h-4 w-4">
+      <path fill="currentColor" d="M13.5 6.5V7h5v-.5a2.5 2.5 0 0 0-5 0Zm-2 .5v-.5a4.5 4.5 0 1 1 9 0V7H28a1 1 0 1 1 0 2h-1.508L24.6 25.568A5 5 0 0 1 19.63 30h-7.26a5 5 0 0 1-4.97-4.432L5.508 9H4a1 1 0 0 1 0-2h7.5Zm2.5 6.5a1 1 0 1 0-2 0v10a1 1 0 1 0 2 0v-10Zm5-1a1 1 0 0 0-1 1v10a1 1 0 1 0 2 0v-10a1 1 0 0 0-1-1Z" />
+    </svg> Apagar</a></td>
+        </tr>
+        <!-- / Linha para repetir -->
+        {% else %}
+        <tr>
+            <td colspan="2">Nenhum usuário</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+        
+    </table>
+
+    <a href="/novo_usuario" class="rounded-lg border border-green-500 bg-green-500 px-5 py-2.5 text-center text-sm font-medium text-white shadow-sm transition-all hover:border-green-700 hover:bg-green-700 focus:ring focus:ring-green-200 disabled:cursor-not-allowed disabled:border-green-300 disabled:bg-green-300 inline-flex"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#fff" viewBox="0 0 256 256"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm48-88a8,8,0,0,1-8,8H136v32a8,8,0,0,1-16,0V136H88a8,8,0,0,1,0-16h32V88a8,8,0,0,1,16,0v32h32A8,8,0,0,1,176,128Z"></path></svg> Adicionar usuário</a>
+
+{% endblock %}
