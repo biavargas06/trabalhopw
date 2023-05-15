@@ -25,7 +25,7 @@
             <td>{{usr.nome}}</td>
 
             {% if usr.permissao == 2 %}
-            <td><a href="doc_ap.php?iddocumento={{usr.iddocumento}}&idusuario={{usr.usuarios_idusuario}}">Excluir</a></td>
+            <td><a href="docs.php?iddocumento={{usr.iddocumento}}&idusuario={{usr.usuarios_idusuario}}">Excluir</a></td>
             {% else %}
             <td>Sem premissão!</td>
             {% endif %}
