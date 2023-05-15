@@ -13,7 +13,7 @@ if (!isset($_SESSION['user']) || $_SESSION['user'] !== 'verificado') {
     die;
 }
 
-$sql = $pdo->prepare('SELECT * FROM documentos WHERE documentos.usuarios_idusuarios = ?');
+$sql = $pdo->prepare('SELECT * FROM documentos WHERE documentos.usuarios_idusuario = ?');
 $sql->execute([$id]);
 $documentos = $sql->fetchAll(PDO::FETCH_ASSOC);
 
