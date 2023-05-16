@@ -19,7 +19,16 @@ $sql->execute([$id]);
 
 $usuarios = $sql->fetchAll(PDO::FETCH_ASSOC);
 
+foreach ($usuarios as &$usr) {
+    $nomeArquivo = $usr['nome'];
+    $caminhoArquivo = 'uploads/' . $nomeArquivo;
+    $usr['caminho_arquivo'] = $caminhoArquivo;
+    $updateSql = $pdo->prepare('UPDATE documentos SET caminho_arquivo = ? WHERE iddocumento = ?');
+    $updateSql->execute([$caminhoArquivo, $usr['iddocumento']]);
+}
+
 echo $twig->render('lista.html', [
     'usuarios' => $usuarios,
     'idusuario' => $id,
 ]);
+?>
