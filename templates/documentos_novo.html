@@ -2,6 +2,7 @@
 {% extends "inc/base.html" %}
 
 {% block conteudo %}
+<link rel="stylesheet" href="css/dn.css" >
     <h1>Documentos</h1>
     <h2>Adicionar documento</h2>
     
@@ -14,8 +15,9 @@
 
         <input type="hidden" value={{iduser}}>
 
+        <a href="arquivos.php?idusuario={{iduser}}">MEUS DOCUMENTOS</a>
+
     </form>
 
-    <a href="arquivos.php?idusuario={{iduser}}">Meus documentos</a>
-
+    
 {% endblock %}
