@@ -10,7 +10,7 @@ if (!isset($_SESSION['user']) || $_SESSION['user'] !== 'verificado') {
     die;
 }
 
-$sql = $pdo->prepare('SELECT compartilhar_docs.*, documentos.nome, documentos.usuarios_idusuario 
+$sql = $pdo->prepare('SELECT compartilhar_docs.*, documentos.nome, documentos.data_upload AS data, documentos.usuarios_idusuario 
 AS d_iduser, usuarios.nome AS usuario_nome 
 FROM compartilhar_docs JOIN documentos ON documentos.iddocumento = compartilhar_docs.iddocumento
 JOIN usuarios ON documentos.usuarios_idusuario = usuarios.idusuario
