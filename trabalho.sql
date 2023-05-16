@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geraÃ§Ã£o: 12-Maio-2023 Ã s 15:28
--- VersÃ£o do servidor: 10.4.24-MariaDB
--- versÃ£o do PHP: 8.1.6
+-- Tempo de geração: 16-Maio-2023 às 22:11
+-- Versão do servidor: 10.4.27-MariaDB
+-- versão do PHP: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -32,7 +32,15 @@ CREATE TABLE `compartilhar_docs` (
   `idcompartilhar_docs` int(11) NOT NULL,
   `permissao` tinyint(4) NOT NULL,
   `usuarios_idusuario` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `compartilhar_docs`
+--
+
+INSERT INTO `compartilhar_docs` (`iddocumento`, `idcompartilhar_docs`, `permissao`, `usuarios_idusuario`) VALUES
+(1, 1, 1, 2),
+(4, 3, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -43,8 +51,18 @@ CREATE TABLE `compartilhar_docs` (
 CREATE TABLE `documentos` (
   `iddocumento` int(11) NOT NULL,
   `nome` varchar(255) NOT NULL,
-  `usuarios_idusuario` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `usuarios_idusuario` int(11) NOT NULL,
+  `data_upload` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `documentos`
+--
+
+INSERT INTO `documentos` (`iddocumento`, `nome`, `usuarios_idusuario`, `data_upload`) VALUES
+(1, 'Trabalhofreiosecontrapesos.pdf', 1, '2023-05-16'),
+(3, 'OrganizaoSecretaCapI.docx', 2, '2023-05-16'),
+(4, 'sol.jpg', 1, '2023-05-16');
 
 -- --------------------------------------------------------
 
@@ -57,14 +75,22 @@ CREATE TABLE `usuarios` (
   `nome` varchar(255) DEFAULT NULL,
   `email` varchar(255) NOT NULL,
   `senha` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Ãndices para tabelas despejadas
+-- Extraindo dados da tabela `usuarios`
+--
+
+INSERT INTO `usuarios` (`idusuario`, `nome`, `email`, `senha`) VALUES
+(1, 'bia', 'biancavn06@gmail.com', '$2y$10$MMFi1jG5Ck05TTymhB09NuA4/.WXOuTRSNeR4ylVvhZk6jIU/NTEG'),
+(2, 'bianca', 'bia@gmail.com', '$2y$10$wwuCQEM2Wm9iyrxcZmn9eef1jCWRg8aSsJIKA1n0c9JMi3j/9x4rm');
+
+--
+-- Índices para tabelas despejadas
 --
 
 --
--- Ãndices para tabela `compartilhar_docs`
+-- Índices para tabela `compartilhar_docs`
 --
 ALTER TABLE `compartilhar_docs`
   ADD PRIMARY KEY (`idcompartilhar_docs`),
@@ -72,14 +98,14 @@ ALTER TABLE `compartilhar_docs`
   ADD KEY `fk_id_documento` (`iddocumento`);
 
 --
--- Ãndices para tabela `documentos`
+-- Índices para tabela `documentos`
 --
 ALTER TABLE `documentos`
   ADD PRIMARY KEY (`iddocumento`),
   ADD KEY `usuarios_idusuario` (`usuarios_idusuario`);
 
 --
--- Ãndices para tabela `usuarios`
+-- Índices para tabela `usuarios`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`idusuario`);
@@ -92,22 +118,22 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de tabela `compartilhar_docs`
 --
 ALTER TABLE `compartilhar_docs`
-  MODIFY `idcompartilhar_docs` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idcompartilhar_docs` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `documentos`
 --
 ALTER TABLE `documentos`
-  MODIFY `iddocumento` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `iddocumento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `idusuario` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idusuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- RestriÃ§Ãµes para despejos de tabelas
+-- Restrições para despejos de tabelas
 --
 
 --

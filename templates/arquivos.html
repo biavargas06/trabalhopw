@@ -4,31 +4,57 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/arquivos.css" >
+    <link rel="stylesheet" href="css/arquivos.css">
     <title>Arquivos</title>
 </head>
 <body>
+    <div class="container">
+        <div class="search-container">
+ <input type="text" id="searchInput" placeholder="Digite o nome do arquivo">
+    <button type="button" onclick="searchFiles()">🔎</button>
+        </div>
     <table border="1px solid black">
-
-<thead >
-    <tr>
-        <th>Arquivo</th>
-        <th class="px-6 py-4 font-medium text-gray-900">Compartilhar</th>
-    </tr>
-</thead>
-
-<tbody class="divide-y divide-gray-100 border-t border-gray-100">
-    {%for doc in documentos%}
-        <tr >
-            <td >{{doc.nome}}</td>
-            <td><a href="usuarios_compartilhar.php?iddocumento={{doc.iddocumento}}&idusuario={{doc.usuarios_idusuario}}">Compartilhar documento</a></td>
-        </tr>
-        {%else%}
+        <thead>
             <tr>
-            <td colspan = 2>Não há documentos ainda!!</td>
+                <th>Arquivo</th>
+                <th class="px-6 py-4 font-medium text-gray-900">Compartilhar</th>
             </tr>
-    {%endfor%}
-</tbody>
-</table>
+        </thead>
+        <tbody id="fileTableBody" class="divide-y divide-gray-100 border-t border-gray-100">
+            {%for doc in documentos%}
+                <tr>
+                    <td>{{doc.nome}}</td>
+                    <td><a href="usuarios_compartilhar.php?iddocumento={{doc.iddocumento}}&idusuario={{doc.usuarios_idusuario}}">Compartilhar documento</a></td>
+                </tr>
+            {%else%}
+                <tr>
+                    <td colspan="2">Não há documentos ainda!!</td>
+                </tr>
+            {%endfor%}
+        </tbody>
+    </table>
+    </div>
+
+    <script>
+        function searchFiles() {
+            var input = document.getElementById("searchInput");
+            var filter = input.value.toUpperCase();
+            var tableBody = document.getElementById("fileTableBody");
+            var rows = tableBody.getElementsByTagName("tr");
+
+            for (var i = 0; i < rows.length; i++) {
+                var file = rows[i].getElementsByTagName("td")[0];
+                if (file) {
+                    var fileName = file.textContent || file.innerText;
+                    if (fileName.toUpperCase().indexOf(filter) > -1) {
+                        rows[i].style.display = "";
+                    } else {
+                        rows[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
 </body>
 </html>
+

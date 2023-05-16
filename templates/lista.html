@@ -8,38 +8,67 @@
     <link rel="stylesheet" href="css/lista.css" >
 </head>
 <body>
+    <input type="text" id="searchInput" placeholder="Pesquisar...">
+    <button type="button" onclick="searchFiles()">Pesquisar</button>
+
     <table class="rwd-table">
-<h1>Compartilhados com você:</h1>
-
-<thead >
-    <tr>
-        <th>Remetente</th>
-        <th>Arquivo</th>
-        <th>Excluir</th>
-    </tr>
-</thead>
-
-<tbody>
-    {%for usr in usuarios%}
-        <tr >
-            <td >{{usr.usuario_nome}}</td>
-            <td>{{usr.nome}}</td>
-
-            {% if usr.permissao == 2 %}
-            <td><a href="docs.php?iddocumento={{usr.iddocumento}}&idusuario={{usr.usuarios_idusuario}}">Excluir</a></td>
-            {% else %}
-            <td>Sem premissão!</td>
-            {% endif %}
-            
-
-        </tr>
-        {%else%}
+        <h1>Compartilhados com você:</h1>
+        <thead>
             <tr>
-            <td colspan = 2>Nenhum arquivo compartilhado</td>
+                <th>Remetente</th>
+                <th>Arquivo</th>
+                <th>Data de Upload</th>
+                <th>Excluir</th>
             </tr>
-    {%endfor%}
-</tbody>
-</table>
-<a class="btn btn-2" href="boasvindas.php?idusuario={{idusuario}}">Voltar</a>
+        </thead>
+        <tbody>
+            {% for usr in usuarios %}
+                <tr>
+                    <td>{{ usr.usuario_nome }}</td>
+                    <td>{{ usr.nome }}</td>
+                    <td>{{ usr.data_upload }}</td>
+
+                    {% if usr.permissao == 2 %}
+                        <td><a href="docs.php?iddocumento={{ usr.iddocumento }}&idusuario={{ usr.usuarios_idusuario }}">Excluir</a></td>
+                    {% else %}
+                        <td>Sem permissão!</td>
+                    {% endif %}
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="4">Nenhum arquivo compartilhado</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a class="btn btn-2" href="boasvindas.php?idusuario={{ idusuario }}">Voltar</a>
+
+    <script>
+        function searchFiles() {
+            var input = document.getElementById("searchInput").value.toUpperCase();
+            var table = document.getElementsByTagName("table")[0];
+            var rows = table.getElementsByTagName("tr");
+
+            for (var i = 0; i < rows.length; i++) {
+                var cells = rows[i].getElementsByTagName("td");
+                var found = false;
+
+                for (var j = 0; j < cells.length; j++) {
+                    var cellText = cells[j].innerText.toUpperCase();
+
+                    if (cellText.indexOf(input) > -1) {
+                        found = true;
+                        break;
+                    }
+                }
+
+                if (found) {
+                    rows[i].style.display = "";
+                } else {
+                    rows[i].style.display = "none";
+                }
+            }
+        }
+    </script>
 </body>
 </html>
