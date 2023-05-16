@@ -1,0 +1,90 @@
+.space-y-5 {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+  
+  /* Estilo para o contêiner dos campos */
+  .mx-auto {
+    text-align: center;
+  }
+  .input-container {
+    border-radius: 5px;
+    padding: 5px;
+    margin-bottom: 10px;
+    width: 22%;
+    display: flex;
+    align-items: center;
+  }
+  /* Estilo para os campos de entrada */
+  input[type="text"],
+  input[type="password"] {
+    margin-bottom: 10px;
+    padding: 10px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+  }
+  
+ 
+  input[type="submit"] {
+    padding: 10px 20px;
+    background-color: #ff4081;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  input[type="submit"]:hover {
+    background-color: #f50057;
+  }
+  
+  a.button {
+    font-family: Arial, sans-serif;
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #ff4081;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+  
+  a.button:hover {
+    background-color: #f50057;
+  }
+  
+  a.button {
+    display: inline-block;
+    line-height: 1;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+  }
+  
+  
+  
+  .button-container {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .button-container a.button {
+    margin-left: 10px;
+  }
+  
+  body {
+    background-color: #e9e9e9;
+  }
+  
+  
+  

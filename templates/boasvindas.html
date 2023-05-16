@@ -4,13 +4,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bv.css" >
     <title>Boas vindas</title>
 </head>
 <body>
-    <h3>Seja bem-vindo(a) {{ usuarios.nome }}</h1>
+    <h3 class="title">Seja bem-vindo(a) {{ usuarios.nome }}!!</h3>
+    <h1 class="subtitle">O que você deseja?</h1>
 
-    <a href="logout.php">Sair</a> 
-    <a href="/trabalhopw/documentos.php?idusuario={{ usuarios.idusuario }}">Upload</a>
-    <a href="/trabalhopw/lista.php?idusuario={{ usuarios.idusuario }}">Compartilhados comigo</a>
+    <div class="button-container">
+        <a href="logout.php" class="button">Deslogar</a> 
+        <a href="/trabalhopw/documentos.php?idusuario={{ usuarios.idusuario }}" class="button">Fazer upload</a>
+        <a href="/trabalhopw/lista.php?idusuario={{ usuarios.idusuario }}" class="button">Ver compartilhados comigo</a>
+    </div>
 </body>
 </html>
