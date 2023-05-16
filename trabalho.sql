@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 16-Maio-2023 às 22:11
+-- Tempo de geração: 17-Maio-2023 às 00:38
 -- Versão do servidor: 10.4.27-MariaDB
 -- versão do PHP: 8.2.0
 
@@ -52,17 +52,20 @@ CREATE TABLE `documentos` (
   `iddocumento` int(11) NOT NULL,
   `nome` varchar(255) NOT NULL,
   `usuarios_idusuario` int(11) NOT NULL,
-  `data_upload` date DEFAULT NULL
+  `data_upload` date DEFAULT NULL,
+  `caminho_arquivo` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Extraindo dados da tabela `documentos`
 --
 
-INSERT INTO `documentos` (`iddocumento`, `nome`, `usuarios_idusuario`, `data_upload`) VALUES
-(1, 'Trabalhofreiosecontrapesos.pdf', 1, '2023-05-16'),
-(3, 'OrganizaoSecretaCapI.docx', 2, '2023-05-16'),
-(4, 'sol.jpg', 1, '2023-05-16');
+INSERT INTO `documentos` (`iddocumento`, `nome`, `usuarios_idusuario`, `data_upload`, `caminho_arquivo`) VALUES
+(1, 'Trabalhofreiosecontrapesos.pdf', 1, '2023-05-16', 'uploads/Trabalhofreiosecontrapesos.pdf'),
+(3, 'OrganizaoSecretaCapI.docx', 2, '2023-05-16', NULL),
+(4, 'sol.jpg', 1, '2023-05-16', 'uploads/sol.jpg'),
+(5, 'ENCOMENDASDEUNIFORMES2023BermudaseLegg.pdf', 2, NULL, NULL),
+(6, 'RelatrioHenriqueDeitos.docx', 2, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -124,7 +127,7 @@ ALTER TABLE `compartilhar_docs`
 -- AUTO_INCREMENT de tabela `documentos`
 --
 ALTER TABLE `documentos`
-  MODIFY `iddocumento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `iddocumento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de tabela `usuarios`
