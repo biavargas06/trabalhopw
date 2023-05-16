@@ -1,10 +1,11 @@
 {# usuario_apagar.html #}
 {% include "inc/head.html" %}
 
-    <h1>Apagar Documento</h1>
+<link rel="stylesheet" href="css/da.css" >
+    <h1>Apagar documento</h1>
     
-    <p>Tem certeza de que quer apagar?</p>
-    <p>Não será mais possível recuperar este documento!</p>
+    <p>Tem certeza de que deseja apagar?</p>
+    <p>Não será possível recuperar este documento!</p>
 
     <form action="documentos_apagar.php" method="post">
         <input type="hidden" value="{{documentos.iddocumento}}">

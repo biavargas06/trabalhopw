@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/uc.css" >
     <title>Document</title>
 </head>
 <body>
@@ -13,14 +14,14 @@
 <thead >
     <tr>
         <th>Usuários</th>
-         <th>Permições</th>
+         <th>Permissões</th>
         <th>Compartilhar</th>
     </tr>
 </thead>
 
 <tbody>
     {%for usr in users%}
-    <form action="compartilhar.php?idusuario={{usr.idusuario}}&iddocumentos={{iddocumento.iddocumento}}" method="post">
+    <form action="compartilhar.php?idusuario={{usr.idusuario}}&iddocumento={{iddocumentos.iddocumento}}" method="post">
         <tr >
             <td >{{usr.nome}}</td>
 
