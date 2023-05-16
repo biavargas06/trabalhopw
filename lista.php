@@ -2,7 +2,6 @@
 require('twig_carregar.php');
 require('pdo.inc.php');
 session_start();
-
 $id = $_GET['idusuario'];
 
 if (!isset($_SESSION['user']) || $_SESSION['user'] !== 'verificado') {

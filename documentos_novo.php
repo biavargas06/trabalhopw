@@ -6,6 +6,8 @@
     require('func/sanitize_filename.php');
     require('func/verifica_nome_arquivo.php');
 
+    date_default_timezone_set('America/Sao_Paulo');
+
     $id = $_GET['idusuario'];
 
     $allowedExtensions = ['pdf', 'doc', 'docx'];
