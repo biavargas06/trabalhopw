@@ -30,9 +30,9 @@
                     <td>{{ usr.usuario_nome }}</td>
                     <td>{{ usr.nome }}</td>
                     <td>{{ usr.data}}</td>
-                    <td><a href="{{ usr.caminho_arquivo }}" download>Baixar</a></td>
+                    <td><a href="{{ usr.caminho_arquivo }}" style="color: #ff69b4;" download>Baixar</a></td>
                     {% if usr.permissao == 2 %}
-                        <td><a href="docs.php?iddocumento={{ usr.iddocumento }}&idusuario={{ usr.usuarios_idusuario }}">Excluir</a></td>
+                        <td><a href="docs.php?iddocumento={{ usr.iddocumento }}&idusuario={{ usr.usuarios_idusuario }}" style="color: #ff69b4;">Excluir</a></td>
                     {% else %}
                         <td>Sem permissão!</td>
                     {% endif %}
